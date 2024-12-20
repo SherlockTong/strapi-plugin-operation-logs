@@ -11,6 +11,10 @@
       "name": "Wilson Fu"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SherlockTong/strapi-plugin-operation-logs"
+  },
   "dependencies": {
     "@strapi/design-system": "^1.6.3",
     "@strapi/helper-plugin": "^4.6.0",
