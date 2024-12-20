@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operation_logs",
+  "info": {
+    "singularName": "operation-log",
+    "pluralName": "operation-logs",
+    "displayName": "Operation Logs"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "module": {
+      "type": "enumeration",
+      "enum": [
+        "Content Type",
+        "Component",
+        "Content Manager",
+        "Roles and Permissions",
+        "Media Library",
+        "User"
+      ]
+    },
+    "method": {
+      "type": "enumeration",
+      "enum": ["POST", "PUT", "DELETE"]
+    },
+    "model": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "actionDesc": {
+      "type": "string"
+    },
+    "relationIds": {
+      "type": "string"
+    },
+    "operator": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "url": {
+      "type": "string"
+    },
+    "request": {
+      "type": "json"
+    },
+    "response": {
+      "type": "json"
+    }
+  }
+}
