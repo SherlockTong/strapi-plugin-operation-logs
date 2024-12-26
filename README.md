@@ -10,30 +10,40 @@ This plugin is used to help administrators record user operations on various mod
 
 
 
-# Configuration
+[//]: # (# Configuration)
 
-The default depth can be customized via the plugin config. To do so create or edit you plugins.js file.
+[//]: # ()
+[//]: # (The default depth can be customized via the plugin config. To do so create or edit you plugins.js file.)
 
-## Config
+[//]: # ()
+[//]: # (## Config)
 
-standard config add the following config to your config/plugins.js
+[//]: # ()
+[//]: # (standard config add the following config to your config/plugins.js)
 
-```
-module.exports = ({ env }) => ({
-  'operation-logs': {
-    enabled: true,
-  },
-});
-```
+[//]: # ()
+[//]: # (```)
+
+[//]: # (module.exports = &#40;{ env }&#41; => &#40;{)
+
+[//]: # (  'operation-logs': {)
+
+[//]: # (    enabled: true,)
+
+[//]: # (  },)
+
+[//]: # (}&#41;;)
+
+[//]: # (```)
 # Usages
 
 ## List View Page
 
-![list.png](https://github.com/SherlockTong/images/blob/main/strapi/operation-log-list-view.png)
+![list.png](https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-list-view.png)
 
 ## Detail View Page
 
-![detail.png](https://github.com/SherlockTong/images/blob/main/strapi/operation-log-detail-view.png)
+![detail.png](https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-detail-view.png)
 
 
 # Contributions

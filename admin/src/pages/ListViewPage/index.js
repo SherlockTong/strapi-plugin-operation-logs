@@ -28,7 +28,7 @@ const ListViewPage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(
-    () => Number(localStorage.getItem("pageSize")) || 20
+      () => Number(localStorage.getItem("pageSize")) || 20
   );
 
   // 新增的筛选逻辑
@@ -92,9 +92,9 @@ const ListViewPage = () => {
       pages.push(...[1, 2, 3, 4, 5], ellipsis, totalPages);
     } else if (totalPages - page <= 3) {
       pages.push(
-        1,
-        ellipsis,
-        ...Array.from({ length: 5 }, (_, i) => totalPages - 4 + i)
+          1,
+          ellipsis,
+          ...Array.from({ length: 5 }, (_, i) => totalPages - 4 + i)
       );
     } else {
       pages.push(1, ellipsis, page - 1, page, page + 1, ellipsis, totalPages);
@@ -122,151 +122,164 @@ const ListViewPage = () => {
     setPage(1); // 重置到第一页
   };
 
+  const handleRelationIds = (relationIds) => {
+    if (relationIds === "-") {
+      return relationIds;
+    }
+    const relationIdList = JSON.parse(relationIds);
+    if (relationIdList.length <= 3) {
+      return relationIdList;
+    }
+    return relationIdList.slice(0, 3) + ",...";
+  };
+
   return (
-    <Box padding={8}>
-      {/* 标题部分 */}
-      <Flex direction="column" alignItems="flex-start" marginBottom={8}>
-        <Typography variant="alpha" fontWeight="bold">
-          Operation Logs
-        </Typography>
-        <Typography variant="epsilon" textColor="neutral600">
-          {total} entries found
-        </Typography>
-      </Flex>
-
-      {/* 筛选部分 */}
-      <Flex alignItems="center" gap={2} marginBottom={4}>
-        <Typography variant="secondary">Module is</Typography>
-        <Box width="200px">
-          <SingleSelect
-            value={module}
-            onChange={handleModuleFilterChange}
-            placeholder="filter by module"
-            size="medium"
-          >
-            {moduleList.map((value) => (
-              <SingleSelectOption key={value} value={value}>
-                {value}
-              </SingleSelectOption>
-            ))}
-          </SingleSelect>
-        </Box>
-        <Box marginLeft="auto">
-          <Button onClick={resetFilters} variant="secondary">
-            Reset
-          </Button>
-        </Box>
-      </Flex>
-
-      {/* 数据表格 */}
-      <Typography fontSize="14px" textColor="neutral800" as="div">
-        <Box marginBottom={4}>
-          <Table colCount={8} rowCount={logs.length} footer={<></>}>
-            <Thead>
-              <Tr>
-                {fieldList.map((field) => (
-                  <Th key={field.key} action={""}>
-                    <Typography
-                      variant="omega"
-                      textColor="neutral600"
-                      fontWeight="bold"
-                    >
-                      {field.desc}
-                    </Typography>
-                  </Th>
-                ))}
-              </Tr>
-            </Thead>
-            <Tbody>
-              {logs.map((log) => (
-                <Tr key={log.id}>
-                  {fieldList.map((field) => (
-                    <Td>
-                      <Typography variant="omega">
-                        {field.key === "date"
-                          ? DateTime.fromISO(log.date).toFormat(
-                              "yyyy-LL-dd HH:mm:ss"
-                            )
-                          : log[field.key]}
-                      </Typography>
-                    </Td>
-                  ))}
-                  <Td>
-                    <Button onClick={() => handleDetailClick(log.id)}>
-                      Detail
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </Box>
-      </Typography>
-
-      {/* 分页部分 */}
-      <Flex justifyContent="space-between" alignItems="center" mt={4}>
-        {/* 条目数选择 */}
-        <Flex gap={2}>
-          <SingleSelect
-            value={pageSize}
-            onChange={handlePageSizeChange}
-            size="medium"
-          >
-            {[10, 20, 50, 100].map((size) => (
-              <SingleSelectOption key={size} value={size}>
-                {size}
-              </SingleSelectOption>
-            ))}
-          </SingleSelect>
-          <Typography variant="secondary" textColor="neutral600">
-            Entries per page
+      <Box padding={8}>
+        {/* 标题部分 */}
+        <Flex direction="column" alignItems="flex-start" marginBottom={8}>
+          <Typography variant="alpha" fontWeight="bold">
+            Operation Logs
+          </Typography>
+          <Typography variant="epsilon" textColor="neutral600">
+            {total} entries found
           </Typography>
         </Flex>
 
-        {/* 分页 */}
-        <Pagination activePage={page} pageCount={totalPages}>
-          <PreviousLink
-            as="button"
-            to="#"
-            onClick={(e) => {
-              e.preventDefault();
-              if (page > 1) handlePageChange(page - 1);
-            }}
-          >
-            {"<"}
-          </PreviousLink>
+        {/* 筛选部分 */}
+        <Flex alignItems="center" gap={2} marginBottom={4}>
+          <Typography variant="secondary">Module is</Typography>
+          <Box width="200px">
+            <SingleSelect
+                value={module}
+                onChange={handleModuleFilterChange}
+                placeholder="filter by module"
+                size="medium"
+            >
+              {moduleList.map((value) => (
+                  <SingleSelectOption key={value} value={value}>
+                    {value}
+                  </SingleSelectOption>
+              ))}
+            </SingleSelect>
+          </Box>
+          <Box marginLeft="auto">
+            <Button onClick={resetFilters} variant="secondary">
+              Reset
+            </Button>
+          </Box>
+        </Flex>
 
-          {generatePageNumbers().map((number, index) =>
-            number === "..." ? (
-              <Typography key={index} variant="epsilon">
-                {number}
-              </Typography>
-            ) : (
-              <PageLink
-                key={index}
+        {/* 数据表格 */}
+        <Typography fontSize="14px" textColor="neutral800" as="div">
+          <Box marginBottom={4}>
+            <Table colCount={8} rowCount={logs.length} footer={<></>}>
+              <Thead>
+                <Tr>
+                  {fieldList.map((field) => (
+                      <Th key={field.key} action={""}>
+                        <Typography
+                            variant="omega"
+                            textColor="neutral600"
+                            fontWeight="bold"
+                        >
+                          {field.desc}
+                        </Typography>
+                      </Th>
+                  ))}
+                </Tr>
+              </Thead>
+              <Tbody>
+                {logs.map((log) => (
+                    <Tr key={log.id}>
+                      {fieldList.map((field) => (
+                          <Td>
+                            <Typography variant="omega">
+                              {field.key === "date"
+                                  ? DateTime.fromISO(log.date).toFormat(
+                                      "yyyy-LL-dd HH:mm:ss"
+                                  )
+                                  : field.key === "relationIds"
+                                      ? handleRelationIds(log[field.key])
+                                      : log[field.key]}
+                            </Typography>
+                          </Td>
+                      ))}
+                      <Td>
+                        <Button onClick={() => handleDetailClick(log.id)}>
+                          Detail
+                        </Button>
+                      </Td>
+                    </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </Box>
+        </Typography>
+
+        {/* 分页部分 */}
+        <Flex justifyContent="space-between" alignItems="center" mt={4}>
+          {/* 条目数选择 */}
+          <Flex gap={2}>
+            <SingleSelect
+                value={pageSize}
+                onChange={handlePageSizeChange}
+                size="medium"
+            >
+              {[10, 20, 50, 100].map((size) => (
+                  <SingleSelectOption key={size} value={size}>
+                    {size}
+                  </SingleSelectOption>
+              ))}
+            </SingleSelect>
+            <Typography variant="secondary" textColor="neutral600">
+              Entries per page
+            </Typography>
+          </Flex>
+
+          {/* 分页 */}
+          <Pagination activePage={page} pageCount={totalPages}>
+            <PreviousLink
                 as="button"
-                number={number}
-                isActive={page === number}
-                onClick={() => handlePageChange(number)}
-              >
-                {number}
-              </PageLink>
-            )
-          )}
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (page > 1) handlePageChange(page - 1);
+                }}
+            >
+              {"<"}
+            </PreviousLink>
 
-          <NextLink
-            as="button"
-            to="#"
-            onClick={(e) => {
-              e.preventDefault();
-              if (page < totalPages) handlePageChange(page + 1);
-            }}
-          >
-            {">"}
-          </NextLink>
-        </Pagination>
-      </Flex>
-    </Box>
+            {generatePageNumbers().map((number, index) =>
+                number === "..." ? (
+                    <Typography key={index} variant="epsilon">
+                      {number}
+                    </Typography>
+                ) : (
+                    <PageLink
+                        key={index}
+                        as="button"
+                        number={number}
+                        isActive={page === number}
+                        onClick={() => handlePageChange(number)}
+                    >
+                      {number}
+                    </PageLink>
+                )
+            )}
+
+            <NextLink
+                as="button"
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (page < totalPages) handlePageChange(page + 1);
+                }}
+            >
+              {">"}
+            </NextLink>
+          </Pagination>
+        </Flex>
+      </Box>
   );
 };
 

@@ -3,7 +3,7 @@
 const plugin = "plugin::operation-logs.operation-log";
 module.exports = {
   async createLog({ event, user, request, response }) {
-    return await strapi.entityService.create(plugin, {
+    return strapi.entityService.create(plugin, {
       data: {
         module: event.module,
         method: request.method,
@@ -11,10 +11,10 @@ module.exports = {
         action: event.type,
         actionDesc: event.desc,
         relationIds: event.relationIds
-          ? JSON.stringify(event.relationIds)
-          : "-",
+            ? JSON.stringify(event.relationIds)
+            : "-",
         operator: `${user.firstname || "Anonymous"} ${
-          user.lastname || ""
+            user.lastname || ""
         }`.trim(),
         date: new Date(),
         request: getRequestParams(request),
@@ -26,21 +26,18 @@ module.exports = {
   async findPage(request) {
     const { page = 1, pageSize = 10, filters = {} } = request.query; // 获取分页参数，默认第一页，默认每页10条
     console.log(`filters : ${JSON.stringify(filters)}`);
-    const logs = await strapi.entityService.findPage(plugin, {
+    return await strapi.entityService.findPage(plugin, {
       page: page,
       pageSize: pageSize,
-      sort: { date: "desc" },
+      sort: {date: "desc"},
       populate: "*",
       filters, //动态传入过滤条件
     });
-    return logs;
   },
 
   async findOne(request) {
     const { id } = request.params; // 获取分页参数，默认第一页，默认每页10条
-    const log = await strapi.entityService.findOne(plugin, id);
-    console.log(`log:${JSON.stringify(log)}`);
-    return log;
+    return await strapi.entityService.findOne(plugin, id);
   },
 };
 
