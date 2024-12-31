@@ -1,4 +1,10 @@
-# Strapi plugin strapi-plugin-operation-logs
+<p align="center">
+     <img src="./docs/operation-log-logo.jpeg" alt="Bootstrap Icons" width="100">
+</p>
+
+<h1 align="center">
+  Strapi Plugin Operation Logs
+</h1>
 
 This plugin is used to help administrators record user operations on various modules of the Strapi management backend.
 
@@ -39,11 +45,12 @@ This plugin is used to help administrators record user operations on various mod
 
 ## List View Page
 
-![list.png](https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-list-view.png)
+[//]: # (![list.png]&#40;https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-list-view.png&#41;)
+![list.png](./docs/operation-log-list-view.png)
 
 ## Detail View Page
 
-![detail.png](https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-detail-view.png)
+![detail.png](./docs/operation-log-detail-view.png)
 
 
 ## 👍 Contribute
