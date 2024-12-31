@@ -46,5 +46,9 @@ This plugin is used to help administrators record user operations on various mod
 ![detail.png](https://github.com/SherlockTong/images/blob/main/strapi/v1.0.1/operation-log-detail-view.png)
 
 
-# Contributions
-Please open issues before making a pull request so that we can talk about what you want to change for the best results.
+## 👍 Contribute
+
+If you want to say **Thank You** and/or support the active development of `Strapi Plugin Operation Logs`, you can support us by:
+
+1. Add a [GitHub Star](https://github.com/SherlockTong/strapi-plugin-operation-logs/stargazers) to the project.
+2. Support the project by donating a [cup of coffee](https://ko-fi.com/sherlocktong).
