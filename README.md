@@ -1,8 +1,6 @@
-[//]: # (<p align="center">)
-
-[//]: # (     <img src="./docs/operation-log-logo.png" alt="Bootstrap Icons" width="100">)
-
-[//]: # (</p>)
+<p align="center">
+    <img src="./docs/operation-log-logo.png" alt="Bootstrap Icons" width="100">
+</p>
 
 <h1 align="center">
   Strapi Plugin Operation Logs
