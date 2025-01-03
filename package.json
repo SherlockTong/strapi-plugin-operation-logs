@@ -1,9 +1,17 @@
 {
   "name": "strapi-plugin-operation-logs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Record user behavior operations of strapi",
   "license": "MIT",
-  "keywords": ["strapi", "strapi plugin", "operation", "log", "operation logs", "operation-logs", "strapi-plugin-operation-logs"],
+  "keywords": [
+    "strapi",
+    "strapi plugin",
+    "operation",
+    "log",
+    "operation logs",
+    "operation-logs",
+    "strapi-plugin-operation-logs"
+  ],
   "author": {
     "name": "Wilson Fu"
   },
